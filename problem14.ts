@@ -11,14 +11,17 @@
 // Explanation: There is no common prefix among the input strings.
 
 function longestCommonPrefix(strs: string[]): string {
-  let result = "";
-  const firstWord = strs[0];
-  const lastWord = strs[strs.length - 1];
-  for (let i = 0; i < strs.length; i++) {
-    if (firstWord[i] !== lastWord[i]) break;
-    result += firstWord[i];
+  const firstStr = strs[0];
+  if (strs.length === 1) return firstStr;
+  let res = "";
+  for (let i = 0; i < firstStr.length; i++) {
+    res += firstStr[i];
+    for (let j = 0; j < strs.length; j++) {
+      if (!strs[j].startsWith(res)) return res.slice(0, -1);
+    }
   }
-  return result;
+  console.log(res);
+  return res;
 }
 
-longestCommonPrefix(["dog", "racecar", "car"]);
+longestCommonPrefix(["flower", "flower", "flower", "floer"]);
